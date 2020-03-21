@@ -1,0 +1,10 @@
+.total {
+  color: #8a8282;
+  padding: 10px;
+  float: right;
+}
+
+table.mat-table {
+  border-spacing: 0;
+  width: 100%;
+}

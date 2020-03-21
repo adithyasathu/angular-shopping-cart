@@ -1,0 +1,20 @@
+<div class="container" [formGroup]="cartItem">
+  <p>Please select the item and quantity </p>
+  <mat-form-field>
+    <mat-select placeholder="Name" class="grocery" [(ngModel)]="name" formControlName="name">
+      <mat-option class="grocery-option" *ngFor="let item of items" [value]="item.name"  (onSelectionChange)="changeSelection(item)">
+        {{item.name}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+
+  <mat-form-field>
+    <input class="quantity" type="number" [(ngModel)]="quantity" formControlName="quantity" matInput placeholder="Quantity">
+  </mat-form-field>
+
+  <p class="price">Price {{selectedItem?.price}} $</p>
+  <button mat-raised-button class="mat-primary add-button"
+          [disabled]="!cartItem.valid"
+          (click)="addCartItem()">Add to Cart</button>
+</div>
