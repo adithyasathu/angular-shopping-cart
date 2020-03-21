@@ -20,8 +20,6 @@ Develop a simple Shopping cart application.
 
 # Demo via stackblitz
 
-<iframe src="https://stackblitz.com/github/adithyasathu/angular-shopping-cart?embed=1"></iframe>
-
 https://stackblitz.com/github/adithyasathu/angular-shopping-cart
 
 
