@@ -19,7 +19,8 @@ Develop a simple Shopping cart application.
 
 
 # Demo via stackblitz
-https://stackblitz.com/github/angular-shopping-cart
+
+https://stackblitz.com/github/adithyasathu/angular-shopping-cart
 
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.0.
