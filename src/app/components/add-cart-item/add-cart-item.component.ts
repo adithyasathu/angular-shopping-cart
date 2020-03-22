@@ -18,9 +18,9 @@ export class AddCartItemComponent implements OnInit {
 
   public ngOnInit() {
     this.cartItem =  new FormGroup({
-      name: new FormControl('name', [Validators.required]),
-      price: new FormControl('price'),
-      quantity: new FormControl('quantity', [Validators.required, Validators.min(1)]),
+      name: new FormControl(null, [Validators.required]),
+      price: new FormControl(null),
+      quantity: new FormControl(null, [Validators.required, Validators.min(1)]),
     });
   }
 

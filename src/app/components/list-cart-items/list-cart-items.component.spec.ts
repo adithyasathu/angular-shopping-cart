@@ -39,6 +39,11 @@ describe('ListCartItemsComponent', () => {
     expect(component).to.not.be.null;
   });
 
+  it('NO cart items -  total should be calculated to zero', () => {
+    expect(totalElement.componentInstance.cartItems).to.be.deep.equals([]);
+    expect(totalElement.nativeElement.textContent).to.be.eq('Total - $0.00');
+  });
+
   it('Add cart items -  total should be calculated', () => {
     shoppingCartService.addCartItems({
       'name': 'Bread',

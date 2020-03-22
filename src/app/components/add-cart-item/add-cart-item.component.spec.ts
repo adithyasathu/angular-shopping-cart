@@ -6,6 +6,7 @@ import { DebugElement } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from '../../material.module';
+import {ShoppingCartService} from '../../services/shopping-cart/shopping-cart.service';
 const expect = chai.expect;
 
 
@@ -16,6 +17,7 @@ describe('AddCartItemComponent', () => {
   let quantityElement: DebugElement;
   let priceElement: DebugElement;
   let addButtonElement: DebugElement;
+  let shoppingCartService: ShoppingCartService;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -26,11 +28,13 @@ describe('AddCartItemComponent', () => {
         MaterialModule,
         ReactiveFormsModule
       ],
+      providers: [ ShoppingCartService ]
     }).compileComponents();
   }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(AddCartItemComponent);
+    shoppingCartService = TestBed.get(ShoppingCartService);
     component = fixture.componentInstance;
     fixture.detectChanges();
     groceryElement  = fixture.debugElement.query(By.css('.grocery'));
@@ -63,7 +67,7 @@ describe('AddCartItemComponent', () => {
     fixture.detectChanges();
     fixture.debugElement.queryAll(By.css('.grocery-option'))[2].nativeElement.click();
     fixture.detectChanges();
-    expect(priceElement.nativeElement.textContent).to.be.eq(`Price ${component.items[2].price}`);
+    expect(priceElement.nativeElement.textContent).to.be.eq(`Price ${component.items[2].price} $`);
   });
 
   it('grocery and quantity filled  - should enable Add button', () => {
@@ -77,6 +81,8 @@ describe('AddCartItemComponent', () => {
     quantityElement.nativeElement.dispatchEvent(new Event('input'));
     fixture.detectChanges();
     expect(addButtonElement.nativeElement.disabled).to.be.false;
+    addButtonElement.nativeElement.dispatchEvent(new Event('click'));
+    expect(shoppingCartService.getCartItems()).to.be.deep.eq([{'name': 'Milk', 'price': 1, 'quantity': 4}]);
   });
 
 });

@@ -43,17 +43,17 @@ export class ListCartItemsComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.subscription.unsubscribe();
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
   }
 
   calcTotalCost(items) {
     let total = 0;
-    if (items) {
-      items.forEach((item) => {
-          total += (item.price * item.quantity);
-      });
-     this.total = total;
-    }
+    items.forEach((item) => {
+        total += (item.price * item.quantity);
+    });
+   this.total = total;
   }
 
 
