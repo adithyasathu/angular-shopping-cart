@@ -1,2 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
 @import '@angular/material/prebuilt-themes/deeppurple-amber.css';
+
+
+p {
+  color: #8a8282;
+  display:block;
+  font-family:Roboto, "Helvetica Neue", sans-serif;
+}

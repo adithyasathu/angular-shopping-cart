@@ -70,6 +70,33 @@ describe('AddCartItemComponent', () => {
     expect(priceElement.nativeElement.textContent).to.be.eq(`Price ${component.items[2].price} $`);
   });
 
+  it('Quantity not filled - required message shown', () => {
+    expect(component).to.not.be.null;
+    quantityElement.nativeElement.dispatchEvent(new Event('input'));
+    fixture.detectChanges();
+    expect(fixture.debugElement.nativeElement.querySelector('.quantity-required').textContent)
+      .to.be.eq('Quantity is required.');
+  });
+
+  it('Quantity filled as zero - minimum quantity message shown', () => {
+    expect(component).to.not.be.null;
+    quantityElement.nativeElement.value = 0;
+    quantityElement.nativeElement.dispatchEvent(new Event('input'));
+    fixture.detectChanges();
+    expect(fixture.debugElement.nativeElement.querySelector('.quantity-min').textContent)
+      .to.be.eq('Minimum quantity required, at least one.');
+  });
+
+
+  it('Quantity filled as negative number - minimum quantity message shown', () => {
+    expect(component).to.not.be.null;
+    quantityElement.nativeElement.value = -7;
+    quantityElement.nativeElement.dispatchEvent(new Event('input'));
+    fixture.detectChanges();
+    expect(fixture.debugElement.nativeElement.querySelector('.quantity-min').textContent)
+      .to.be.eq('Minimum quantity required, at least one.');
+  });
+
   it('grocery and quantity filled  - should enable Add button', () => {
     expect(component).to.not.be.null;
     fixture.debugElement.query(By.css('.grocery')).nativeElement.click();

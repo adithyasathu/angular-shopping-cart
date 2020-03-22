@@ -1,20 +1,21 @@
-<div class="container" [formGroup]="cartItem">
-  <p>Please select the item and quantity </p>
-  <mat-form-field>
+<mat-card class="container" [formGroup]="cartItem">
+  <mat-form-field appearance="fill">
     <mat-select placeholder="Please select an Item" class="grocery" formControlName="name">
-      <mat-option class="grocery-option" *ngFor="let item of items" [value]="item.name"  (onSelectionChange)="changeSelection(item)">
-        {{item.name}}
+      <mat-option class="grocery-option" *ngFor="let item of items"
+          [value]="item.name" (onSelectionChange)="changeSelection(item)">{{item.name}}
       </mat-option>
     </mat-select>
   </mat-form-field>
-
-
-  <mat-form-field>
+  <mat-form-field appearance="fill">
     <input class="quantity" type="number" formControlName="quantity" matInput placeholder="Quantity">
   </mat-form-field>
+  <span *ngIf="(cartItem.get('quantity').dirty || cartItem.get('quantity').touched) && cartItem.get('quantity').invalid">
+      <mat-error class="quantity-required" align="start" *ngIf="cartItem.get('quantity').errors.required">Quantity is required.</mat-error>
+      <mat-error class="quantity-min" align="start" *ngIf="cartItem.get('quantity').errors.min">Minimum quantity required, at least one.</mat-error>
+  </span>
 
   <p class="price">Price {{selectedItem?.price}} $</p>
   <button mat-raised-button class="mat-primary add-button"
           [disabled]="cartItem.invalid"
           (click)="addCartItem()">Add to Cart</button>
-</div>
+</mat-card>
