@@ -1,4 +1,4 @@
-## ShoppingCartApp
+## ShoppingCartApp  [![Build Status](https://travis-ci.com/adithyasathu/angular-shopping-cart.svg?branch=master)](https://travis-ci.com/github/adithyasathu/angular-shopping-cart)
 
 # Task
 Develop a simple Shopping cart application.
